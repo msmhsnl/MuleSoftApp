@@ -1,0 +1,74 @@
+!SESSION 2020-04-14 11:08:49.971 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_242
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.mule.tooling.core 2 0 2020-04-14 11:09:24.452
+!MESSAGE C:\Users\SEMIH\.m2\repository does not exist or contain a maven repository
+
+!ENTRY org.mule.tooling.core 2 0 2020-04-14 11:09:24.466
+!MESSAGE C:\Users\SEMIH\.m2\repository does not exist or contain a maven repository
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.139
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.152
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.226
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.234
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.294
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.302
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.362
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.370
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.432
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.439
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.498
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.506
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.547
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:10:10.559
+!MESSAGE Forcing the usage of 'current' in the schemaLocation of LDAP [version 3.4, ESB version 3.4+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/3.4/mule-ldap.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/ldap/current/mule-ldap.xsd
+Forcing the usage of 'current' in the schemaLocation of Success Factors [version 1.0, ESB version 3.2+]. Original schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/1.0/mule-successfactors.xsd. New schemaLocation is: http://www.mulesoft.org/schema/mule/successfactors/current/mule-successfactors.xsd
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:11:12.078
+!MESSAGE Will not create a gradle project, user did not want it
+
+!ENTRY org.mule.tooling.core 1 0 2020-04-14 11:11:12.090
+!MESSAGE Will not create a gradle project, user did not want it
