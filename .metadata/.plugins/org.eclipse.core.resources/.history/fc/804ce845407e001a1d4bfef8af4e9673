@@ -1,0 +1,6 @@
+http.port=8081
+
+db.port=DESKTOP-ROG53K0:1433
+db.masterdata=LB_MasterDataDB
+db.user=sa
+db.password=123

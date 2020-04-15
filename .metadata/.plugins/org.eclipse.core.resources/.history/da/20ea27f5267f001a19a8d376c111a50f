@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+    <flow name="getAllOrdersFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/getorders" allowedMethods="GET" doc:name="HTTP"/>
+        <choice doc:name="Choice">
+            <when expression="#[!message.inboundProperties.'http.query.params'.isEmpty()]">
+                <db:select config-ref="Order_Database_Configuration" doc:name="OrderData Database-GET">
+                    <db:parameterized-query><![CDATA[SELECT OrderHeaders.OrderCode,OrderDetails.ProductCode,OrderDetails.Quantity,OrderDetails.TotalAmount
+FROM OrderHeaders
+JOIN OrderDetails ON OrderDetails.OrderCode=OrderHeaders.OrderCode
+WHERE OrderHeaders.OrderCode=#[message.inboundProperties.'http.query.params'.ordercode]]]></db:parameterized-query>
+                </db:select>
+            </when>
+            <otherwise>
+                <db:select config-ref="Order_Database_Configuration" doc:name="OrderData Database-GET-ALL">
+                    <db:parameterized-query><![CDATA[SELECT OrderHeaders.OrderCode,OrderDetails.ProductCode,OrderDetails.Quantity,OrderDetails.TotalAmount
+FROM OrderHeaders
+JOIN OrderDetails ON OrderDetails.OrderCode=OrderHeaders.OrderCode]]></db:parameterized-query>
+                </db:select>
+            </otherwise>
+        </choice>
+        <dw:transform-message doc:name="Transform Message" metadata:id="62c0ec65-81ac-48d1-a2ce-42fa2239acee">
+            <dw:input-payload doc:sample="sample_data\list_map_1.dwl"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+payload groupBy $.OrderCode map  {
+			
+	OrderCode:$.OrderCode[0],
+	Items: ($ map (payload01 , indexofitem )-> {
+			
+		ProductCode: payload01.ProductCode,
+		Quantity: payload01.Quantity,
+		TotalAmount: payload01.TotalAmount })}
+
+
+	
+		
+
+]]></dw:set-payload>
+        </dw:transform-message>
+        <set-payload value="#[payload==[
+  
+] ?&quot;PRODUCT CODE CAN NOT FOUND&quot;:payload]" doc:name="Set Payload"/>
+        <logger level="INFO" doc:name="Logger"/>
+    </flow>
+</mule>
