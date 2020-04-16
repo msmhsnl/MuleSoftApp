@@ -1,0 +1,28 @@
+{
+	"type": "object",
+	"required": true,
+	"properties": {
+		"OrderCode": {
+			"type": "string",
+			"required": true
+		},
+		"Items": {
+			"type": "object",
+			"required": true,
+			"properties": {
+				"ProductCode": {
+					"type": "integer",
+					"required": true
+				},
+				"Quantity": {
+					"type": "integer",
+					"required": true
+				},
+				"TotalAmount": {
+					"type": "integer",
+					"required": true
+				}
+			}
+		}
+	}
+}

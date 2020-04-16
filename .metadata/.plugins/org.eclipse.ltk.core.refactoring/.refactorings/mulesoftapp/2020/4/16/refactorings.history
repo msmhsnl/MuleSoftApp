@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;mulesoftapp/src/main/api/schemas/order_create_schema&apos; to &apos;order_create_schema.json&apos;" description="Rename resource &apos;order_create_schema&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/api/schemas/order_create_schema" name="order_create_schema.json" stamp="1587044552883" updateReferences="true"/>
+</session>
