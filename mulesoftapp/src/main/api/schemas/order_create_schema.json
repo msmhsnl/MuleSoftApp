@@ -7,7 +7,7 @@
 			"required": true
 		},
 		"Items": {
-			"type": "object",
+			"type": "array",
 			"required": true,
 			"properties": {
 				"ProductCode": {

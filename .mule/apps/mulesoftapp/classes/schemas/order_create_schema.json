@@ -1,5 +1,6 @@
 {
 	"type": "object",
+	"$schema": "http://json-schema.org/draft-03/schema",
 	"required": true,
 	"properties": {
 		"OrderCode": {
@@ -7,7 +8,7 @@
 			"required": true
 		},
 		"Items": {
-			"type": "object",
+			"type": "array",
 			"required": true,
 			"properties": {
 				"ProductCode": {
