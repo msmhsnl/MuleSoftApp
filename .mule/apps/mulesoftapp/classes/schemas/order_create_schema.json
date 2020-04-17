@@ -4,24 +4,29 @@
 	"required": true,
 	"properties": {
 		"OrderCode": {
-			"type": "string",
+			"type": "integer",
 			"required": true
 		},
 		"Items": {
 			"type": "array",
+			"minItems": 0,
 			"required": true,
-			"properties": {
-				"ProductCode": {
-					"type": "integer",
-					"required": true
-				},
-				"Quantity": {
-					"type": "integer",
-					"required": true
-				},
-				"TotalAmount": {
-					"type": "integer",
-					"required": true
+			"items": {
+				"type": "object",
+				"required": true,
+				"properties": {
+					"ProductCode": {
+						"type": "integer",
+						"required": true
+					},
+					"Quantity": {
+						"type": "integer",
+						"required": true
+					},
+					"TotalAmount": {
+						"type": "integer",
+						"required": true
+					}
 				}
 			}
 		}
