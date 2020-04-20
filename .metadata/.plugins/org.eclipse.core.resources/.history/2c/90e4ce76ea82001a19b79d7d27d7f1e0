@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+	<flow name="delete:/orders/deleteOrder:api-config">
+        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload"/>
+    </flow>
+    <flow name="get:/orders/getOrder:api-config">
+        <set-payload value="[&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;&quot;isSucceeded&quot;: true,&#xD;&#xA;&#x9;&#x9;&quot;result&quot;: [&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;OrderCode&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;Items&quot;: [&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;ProductCode&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Quantity&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;TotalAmount&quot;: 12.23&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;},&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;ProductCode&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Quantity&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;TotalAmount&quot;: 12.23&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;]&#xD;&#xA;&#x9;&#x9;&#x9;},&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;OrderCode&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;Items&quot;: [&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;ProductCode&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Quantity&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;TotalAmount&quot;: 12.23&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;},&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;ProductCode&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;Quantity&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;TotalAmount&quot;: 12.23&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;]&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;]&#xD;&#xA;&#x9;}&#xD;&#xA;]" doc:name="Set Payload"/>
+    </flow>
+    <flow name="get:/orders/getProduct:api-config">
+        <set-payload value="[&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;&quot;isSucceeded&quot;: true,&#xD;&#xA;&#x9;&#x9;&quot;result&quot;: [&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;ProductCode&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;ProductName&quot;: &quot;asdasf&quot;,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;SellingPrice&quot;: 12.32&#xD;&#xA;&#x9;&#x9;&#x9;},&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;ProductCode&quot;: 123,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;ProductName&quot;: &quot;asdasf&quot;,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&quot;SellingPrice&quot;: 12.32&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;]&#xD;&#xA;&#x9;}&#xD;&#xA;]" doc:name="Set Payload"/>
+    </flow>
+    <flow name="post:/orders/postOrder:application/json:api-config">
+        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload"/>
+    </flow>
+</mule>

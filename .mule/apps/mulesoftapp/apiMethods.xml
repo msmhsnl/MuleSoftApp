@@ -6,13 +6,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
-    <flow name="delete:/orders/deleteOrder:api-config">
-        <flow-ref name="deleteOrderFlow" doc:name="deleteOrderFlow"/>
+    <flow name="get:/products:api-config">
+        <flow-ref name="getProductsFlow" doc:name="getProductsFlow"/>
     </flow>
     <flow name="get:/orders/getOrder:api-config">
         <flow-ref name="getOrdersFlow" doc:name="getOrdersFlow"/>
     </flow>
     <flow name="post:/orders/postOrder:application/json:api-config">
         <flow-ref name="postOrderFlow" doc:name="postOrderFlow"/>
+    </flow>
+	<flow name="delete:/orders/deleteOrder:api-config">
+        <flow-ref name="deleteOrderFlow" doc:name="deleteOrderFlow"/>
     </flow>
 </mule>

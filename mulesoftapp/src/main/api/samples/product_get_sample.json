@@ -1,0 +1,17 @@
+[
+	{
+		"isSucceeded": true,
+		"result": [
+			{
+				"ProductCode": 123,
+				"ProductName": "asdasf",
+				"SellingPrice": 12.32
+			},
+			{
+				"ProductCode": 123,
+				"ProductName": "asdasf",
+				"SellingPrice": 12.32
+			}
+		]
+	}
+]

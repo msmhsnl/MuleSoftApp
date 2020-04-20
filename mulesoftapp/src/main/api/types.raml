@@ -55,4 +55,20 @@
             application/json:
               #example:
               #schame:
-        
+
+- productType:
+    get:
+      description: Get all products
+  
+      responses:
+        200:
+          body:
+            aplication/json:
+              example: !include samples/product_get_sample.json
+              #schema:
+        401:
+          body:
+            application/json:
+              #example:
+              #schame:
+

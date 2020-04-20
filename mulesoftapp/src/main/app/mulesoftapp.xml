@@ -14,7 +14,7 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
     <batch:job name="mulesoftappBatch">
         <batch:input>
-            <db:select config-ref="MasterData_Database_Configuration" doc:name="Database">
+            <db:select config-ref="MasterData_Database_Configuration" doc:name="MasterData (Select) Database">
                 <db:parameterized-query><![CDATA[SELECT Products.ProductCode,Prices.SellingPrice
 FROM Products
 JOIN Prices ON Products.ProductCode=Prices.ProductCode
@@ -22,7 +22,7 @@ WHERE Products.IsActive=1 AND Prices.IsActive=1]]></db:parameterized-query>
             </db:select>
                         <set-variable variableName="productData" value="#[payload]" doc:name="ProductData"/>
             <enricher target="#[flowVars.databaseResponse]" doc:name="Message Enricher">
-                <db:insert config-ref="Order_Database_Configuration" doc:name="Database">
+                <db:insert config-ref="Order_Database_Configuration" doc:name="OrderData (Insert) Database">
                     <db:parameterized-query><![CDATA[INSERT INTO OrderHeaders (OrderCode,CreateDate,UpdateDate)
 VALUES (#[flowVars.randomOrderCode],GETDATE(),GETDATE())]]></db:parameterized-query>
                 </db:insert>
@@ -35,7 +35,7 @@ VALUES (#[flowVars.randomOrderCode],GETDATE(),GETDATE())]]></db:parameterized-qu
                 <set-variable variableName="randomProduct" value="#[flowVars.productData[new java.util.Random().nextInt(flowVars.productData.size())]]" doc:name="randomProduct"/>
                 <set-variable variableName="randomQuantity" value="#[new java.util.Random().nextInt(10)]" doc:name="randomQuantity"/>
                 <enricher target="#[flowVars.databaseResponse]" doc:name="Message Enricher">
-                    <db:insert config-ref="Order_Database_Configuration" doc:name="Database">
+                    <db:insert config-ref="Order_Database_Configuration" doc:name="OrderData (Insert) Database">
                         <db:parameterized-query><![CDATA[INSERT INTO OrderDetails (OrderCode,ProductCode,Quantity,TotalAmount,CreateDate,UpdateDate)
 VALUES (#[flowVars.randomOrderCode],#[flowVars.randomProduct.ProductCode] ,#[flowVars.randomQuantity] ,#[flowVars.randomQuantity * flowVars.randomProduct.SellingPrice] ,GETDATE(),GETDATE())]]></db:parameterized-query>
                     </db:insert>
@@ -49,6 +49,46 @@ VALUES (#[flowVars.randomOrderCode],#[flowVars.randomProduct.ProductCode] ,#[flo
             <logger level="INFO" doc:name="Logger"/>
         </batch:on-complete>
     </batch:job>
+    <flow name="getProductsFlow">
+        <db:select config-ref="MasterData_Database_Configuration" doc:name="MasterData (Select) Database">
+            <db:parameterized-query><![CDATA[SELECT Products.ProductCode,Products.ProductName,Prices.SellingPrice
+FROM Products
+JOIN Prices ON Products.ProductCode=Prices.ProductCode
+WHERE Products.IsActive=1 AND Prices.IsActive=1]]></db:parameterized-query>
+        </db:select>
+        <choice doc:name="Choice">
+            <when expression="#[payload.isEmpty()]">
+                <dw:transform-message doc:name="Empty Result">
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	isSucceeded:false,
+	message:"PRODUCT LIST NOT FOUND"
+}]]></dw:set-payload>
+                </dw:transform-message>
+                <set-property propertyName="http.status" value="404" encoding="UTF-8" mimeType="application/json" doc:name="status(404)Property"/>
+            </when>
+            <otherwise>
+                <dw:transform-message doc:name="Transform Message" metadata:id="4f259630-43cd-47ae-bf20-81bffa07c827">
+                    <dw:input-payload doc:sample="sample_data\list_map_3.dwl"/>
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+[{
+	isSucceeded: true,
+	result: payload map ((payload01 , indexOfPayload01) -> {
+		ProductCode: payload01.ProductCode,
+		ProductName: payload01.ProductName,
+		SellingPrice: payload01.SellingPrice as :number
+	})
+}]]]></dw:set-payload>
+                </dw:transform-message>
+                <set-property propertyName="http.status" value="200" encoding="UTF-8" mimeType="application/json" doc:name="status(200) Property"/>
+            </otherwise>
+        </choice>
+        <logger level="INFO" doc:name="Logger"/>
+    </flow>
     <flow name="getOrdersFlow">
         <flow-ref name="getOrdersByChoiceFlow" doc:name="getOrdersByChoiceFlow"/>
         <choice doc:name="Choice">
@@ -62,7 +102,7 @@ VALUES (#[flowVars.randomOrderCode],#[flowVars.randomProduct.ProductCode] ,#[flo
 	message:"ORDER CODE NOT FOUND"
 }]]></dw:set-payload>
                 </dw:transform-message>
-                <set-property propertyName="http.status" value="404" encoding="UTF-8" mimeType="application/json" doc:name="Property"/>
+                <set-property propertyName="http.status" value="404" encoding="UTF-8" mimeType="application/json" doc:name="status(404)Property"/>
             </when>
             <otherwise>
                 <dw:transform-message doc:name="Received Orders" metadata:id="62c0ec65-81ac-48d1-a2ce-42fa2239acee">
@@ -87,7 +127,7 @@ VALUES (#[flowVars.randomOrderCode],#[flowVars.randomProduct.ProductCode] ,#[flo
 
 ]]></dw:set-payload>
                 </dw:transform-message>
-                <set-property propertyName="http.status" value="200" encoding="UTF-8" mimeType="application/json" doc:name="Property"/>
+                <set-property propertyName="http.status" value="200" encoding="UTF-8" mimeType="application/json" doc:name="status(200)Property"/>
             </otherwise>
         </choice>
 
@@ -96,7 +136,7 @@ VALUES (#[flowVars.randomOrderCode],#[flowVars.randomProduct.ProductCode] ,#[flo
     <flow name="getOrdersByChoiceFlow">
         <choice doc:name="Choice">
             <when expression="#[!message.inboundProperties.'http.query.params'.isEmpty()]">
-                <db:select config-ref="Order_Database_Configuration" doc:name="OrderData Database-GET">
+                <db:select config-ref="Order_Database_Configuration" doc:name="OrderData (Select) Database">
                     <db:parameterized-query><![CDATA[SELECT OrderHeaders.OrderCode,OrderDetails.ProductCode,OrderDetails.Quantity,OrderDetails.TotalAmount
 FROM OrderHeaders
 JOIN OrderDetails ON OrderDetails.OrderCode=OrderHeaders.OrderCode
@@ -104,7 +144,7 @@ WHERE OrderHeaders.OrderCode= #[message.inboundProperties.'http.query.params'.or
                 </db:select>
             </when>
             <otherwise>
-                <db:select config-ref="Order_Database_Configuration" doc:name="OrderData Database-GET-ALL">
+                <db:select config-ref="Order_Database_Configuration" doc:name="OrderData (Select) Database">
                     <db:parameterized-query><![CDATA[SELECT OrderHeaders.OrderCode,OrderDetails.ProductCode,OrderDetails.Quantity,OrderDetails.TotalAmount
 FROM OrderHeaders
 JOIN OrderDetails ON OrderDetails.OrderCode=OrderHeaders.OrderCode]]></db:parameterized-query>
@@ -120,7 +160,7 @@ JOIN OrderDetails ON OrderDetails.OrderCode=OrderHeaders.OrderCode]]></db:parame
 payload]]></dw:set-payload>
         </dw:transform-message>
         <enricher source="#[payload]" target="#[flowVars.isOrderInserted]" doc:name="Message Enricher">
-            <db:insert config-ref="Order_Database_Configuration" doc:name="Database">
+            <db:insert config-ref="Order_Database_Configuration" doc:name="OrderData (Insert) Database">
                 <db:parameterized-query><![CDATA[INSERT INTO OrderHeaders (OrderCode,CreateDate)
 VALUES (#[payload.OrderCode],GETDATE())]]></db:parameterized-query>
             </db:insert>
@@ -131,7 +171,7 @@ VALUES (#[payload.OrderCode],GETDATE())]]></db:parameterized-query>
             <logger message="#[payload]" level="INFO" doc:name="Logger"/>
 
             <enricher source="#[payload]" target="#[flowVars.isOrderInserted]" doc:name="Message Enricher">
-                <db:insert config-ref="Order_Database_Configuration" doc:name="Database">
+                <db:insert config-ref="Order_Database_Configuration" doc:name="OrderData (Insert) Database">
                     <db:parameterized-query><![CDATA[INSERT INTO OrderDetails (OrderCode,ProductCode,Quantity,TotalAmount,CreateDate)
 VALUES (#[flowVars.orderCode],#[payload.ProductCode] ,#[payload.Quantity] ,#[payload.TotalAmount] ,GETDATE())]]></db:parameterized-query>
 
@@ -152,7 +192,7 @@ VALUES (#[flowVars.orderCode],#[payload.ProductCode] ,#[payload.Quantity] ,#[pay
     </flow>
     <flow name="deleteOrderFlow">
         <enricher source="#[payload]" target="#[flowVars.orderDeleted]" doc:name="Message Enricher">
-            <db:delete config-ref="Order_Database_Configuration" doc:name="Database">
+            <db:delete config-ref="Order_Database_Configuration" doc:name="OrderData (Delete) Database">
                 <db:parameterized-query><![CDATA[DELETE FROM OrderDetails 
 WHERE OrderCode= #[message.inboundProperties.'http.query.params'.ordercode]
 
