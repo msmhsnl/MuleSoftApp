@@ -1,0 +1,5 @@
+authenticated.users=[{"token"\:"a8c8f887-37b2-4cb5-a49b-e97017f9036d","userId"\:"msmhsnl","refreshToken"\:"","baseUrl"\:"https\://anypoint.mulesoft.com/"}]
+current.token=a8c8f887-37b2-4cb5-a49b-e97017f9036d
+current.user=msmhsnl
+eclipse.preferences.version=1
+org.mule.tooling.amc.apps={"userProjectMap"\:{"msmhsnl"\:{"mulesoftapp"\:"{\\"applicationName\\"\:\\"mulesoftapp\\",\\"muleRuntime\\"\:\\"3.9.1\\",\\"properties\\"\:{\\"env\\"\:\\"DEV\\"}}"}}}
