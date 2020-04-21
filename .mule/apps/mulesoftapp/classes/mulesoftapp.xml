@@ -112,7 +112,7 @@ WHERE Products.IsActive=1 AND Prices.IsActive=1]]></db:parameterized-query>
 ---
 {
 	isSucceeded:true,
-	result:{
+	result:
 (payload groupBy $.OrderCode map  {
 	OrderCode:$.OrderCode[0],
 	Items: ($ map (payload01 , indexofitem )-> {
@@ -120,7 +120,7 @@ WHERE Products.IsActive=1 AND Prices.IsActive=1]]></db:parameterized-query>
 		ProductCode: payload01.ProductCode,
 		Quantity: payload01.Quantity,
 		TotalAmount: payload01.TotalAmount })})
-}}
+}
 
 	
 		
