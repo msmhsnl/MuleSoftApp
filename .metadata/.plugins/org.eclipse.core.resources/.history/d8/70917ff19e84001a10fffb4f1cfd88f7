@@ -88,18 +88,6 @@ WHERE Products.IsActive=1 AND Prices.IsActive=1]]></db:parameterized-query>
             </otherwise>
         </choice>
         <logger level="INFO" doc:name="Logger"/>
-        <catch-exception-strategy doc:name="Catch Exception Strategy">
-            <set-variable variableName="errorMessage" value="#[exception.getCauseException().getMessage()]" doc:name="errorMessage"/>
-            <dw:transform-message doc:name="Transform Message">
-                <dw:set-payload><![CDATA[%dw 1.0
-%output application/json
----
-{
-	isSucceeded:false,
-	message:flowVars.errorMessage
-}]]></dw:set-payload>
-            </dw:transform-message>
-        </catch-exception-strategy>
     </flow>
     <flow name="getOrdersFlow">
         <flow-ref name="getOrdersByChoiceFlow" doc:name="getOrdersByChoiceFlow"/>
@@ -144,18 +132,6 @@ WHERE Products.IsActive=1 AND Prices.IsActive=1]]></db:parameterized-query>
         </choice>
 
         <logger level="INFO" doc:name="Logger"/>
-        <catch-exception-strategy doc:name="Catch Exception Strategy">
-            <set-variable variableName="errorMessage" value="#[exception.getCauseException().getMessage()]" doc:name="errorMessage"/>
-            <dw:transform-message doc:name="Transform Message">
-                <dw:set-payload><![CDATA[%dw 1.0
-%output application/json
----
-{
-	isSucceeded:false,
-	message:flowVars.errorMessage
-}]]></dw:set-payload>
-            </dw:transform-message>
-        </catch-exception-strategy>
     </flow>
     <flow name="getOrdersByChoiceFlow">
         <choice doc:name="Choice">
@@ -213,18 +189,6 @@ VALUES (#[flowVars.orderCode],#[payload.ProductCode] ,#[payload.Quantity] ,#[pay
 }]]></dw:set-payload>
         </dw:transform-message>
         <logger level="INFO" doc:name="Logger"/>
-        <catch-exception-strategy doc:name="Catch Exception Strategy">
-            <set-variable variableName="errorMessage" value="#[exception.getCauseException().getMessage()]" doc:name="errorMessage"/>
-            <dw:transform-message doc:name="Transform Message">
-                <dw:set-payload><![CDATA[%dw 1.0
-%output application/json
----
-{
-	isSucceeded:false,
-	message:flowVars.errorMessage
-}]]></dw:set-payload>
-            </dw:transform-message>
-        </catch-exception-strategy>
     </flow>
     <flow name="deleteOrderFlow">
         <enricher source="#[payload]" target="#[flowVars.orderDeleted]" doc:name="Message Enricher">
@@ -248,18 +212,6 @@ WHERE OrderCode= #[message.inboundProperties.'http.query.params'.ordercode]]]></
         </dw:transform-message>
 
         <logger level="INFO" doc:name="Logger"/>
-        <catch-exception-strategy doc:name="Catch Exception Strategy">
-            <set-variable variableName="errorMessage" value="#[exception.getCauseException().getMessage()]" doc:name="errorMessage"/>
-            <dw:transform-message doc:name="Transform Message">
-                <dw:set-payload><![CDATA[%dw 1.0
-%output application/json
----
-{
-	isSucceeded:false,
-	message:flowVars.errorMessage
-}]]></dw:set-payload>
-            </dw:transform-message>
-        </catch-exception-strategy>
     </flow>
 
 
