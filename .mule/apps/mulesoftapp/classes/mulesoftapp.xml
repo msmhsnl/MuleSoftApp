@@ -88,7 +88,7 @@ WHERE Products.IsActive=1 AND Prices.IsActive=1]]></db:parameterized-query>
             </otherwise>
         </choice>
         <logger level="INFO" doc:name="Logger"/>
-        <catch-exception-strategy doc:name="Copy_of_Catch Exception Strategy">
+        <catch-exception-strategy doc:name="Catch Exception Strategy">
             <set-variable variableName="errorMessage" value="#[exception.getCauseException().getMessage()]" doc:name="errorMessage"/>
             <dw:transform-message doc:name="Transform Message">
                 <dw:set-payload><![CDATA[%dw 1.0
@@ -144,7 +144,7 @@ WHERE Products.IsActive=1 AND Prices.IsActive=1]]></db:parameterized-query>
         </choice>
 
         <logger level="INFO" doc:name="Logger"/>
-        <catch-exception-strategy doc:name="Copy_of_Catch Exception Strategy">
+        <catch-exception-strategy doc:name="Catch Exception Strategy">
             <set-variable variableName="errorMessage" value="#[exception.getCauseException().getMessage()]" doc:name="errorMessage"/>
             <dw:transform-message doc:name="Transform Message">
                 <dw:set-payload><![CDATA[%dw 1.0
@@ -185,8 +185,9 @@ payload]]></dw:set-payload>
         </dw:transform-message>
         <enricher source="#[payload]" target="#[flowVars.isOrderInserted]" doc:name="Message Enricher">
             <db:insert config-ref="Order_Database_Configuration" doc:name="OrderData (Insert) Database">
-                <db:parameterized-query><![CDATA[INSERT INTO OrderHeaders (OrderCode,CreateDate)
-VALUES (#[payload.OrderCode],GETDATE())]]></db:parameterized-query>
+                <db:parameterized-query><![CDATA[INSERT INTO OrderHeaders (OrderCode,CreateDate,UpdateDate)
+VALUES (#[payload.OrderCode],GETDATE(),GETDATE())]]></db:parameterized-query>
+
             </db:insert>
         </enricher>
         <set-variable variableName="orderCode" value="#[payload.OrderCode]" doc:name="orderCode Variable"/>
@@ -196,10 +197,10 @@ VALUES (#[payload.OrderCode],GETDATE())]]></db:parameterized-query>
 
             <enricher source="#[payload]" target="#[flowVars.isOrderInserted]" doc:name="Message Enricher">
                 <db:insert config-ref="Order_Database_Configuration" doc:name="OrderData (Insert) Database">
-                    <db:parameterized-query><![CDATA[INSERT INTO OrderDetails (OrderCode,ProductCode,Quantity,TotalAmount,CreateDate)
-VALUES (#[flowVars.orderCode],#[payload.ProductCode] ,#[payload.Quantity] ,#[payload.TotalAmount] ,GETDATE())]]></db:parameterized-query>
-
+                    <db:parameterized-query><![CDATA[INSERT INTO OrderDetails (OrderCode,ProductCode,Quantity,TotalAmount,CreateDate,UpdateDate)
+VALUES (#[flowVars.orderCode],#[payload.ProductCode] ,#[payload.Quantity] ,#[payload.TotalAmount] ,GETDATE(),GETDATE())]]></db:parameterized-query>
                 </db:insert>
+
             </enricher>
 
         </foreach>
@@ -248,7 +249,7 @@ WHERE OrderCode= #[message.inboundProperties.'http.query.params'.ordercode]]]></
         </dw:transform-message>
 
         <logger level="INFO" doc:name="Logger"/>
-        <catch-exception-strategy doc:name="Copy_of_Catch Exception Strategy">
+        <catch-exception-strategy doc:name="Catch Exception Strategy">
             <set-variable variableName="errorMessage" value="#[exception.getCauseException().getMessage()]" doc:name="errorMessage"/>
             <dw:transform-message doc:name="Transform Message">
                 <dw:set-payload><![CDATA[%dw 1.0

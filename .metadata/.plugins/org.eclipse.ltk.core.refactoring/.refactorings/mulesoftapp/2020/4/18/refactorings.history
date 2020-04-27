@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;mulesoftapp/src/main/resources/project-DEV.properties&apos; to &apos;DEV.properties&apos;" description="Rename resource &apos;project-DEV.properties&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/project-DEV.properties" name="DEV.properties" stamp="1587978090548" updateReferences="true"/>
+</session>
